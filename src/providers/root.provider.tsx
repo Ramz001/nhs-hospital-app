@@ -1,6 +1,7 @@
 import KonstaProvider from "./konsta-ui.provider";
 import QueryProvider from "./query.provider";
 import ThemeProvider from "./theme.provider";
+import NuqsProvider from "./nuqs.provider";
 
 export default function RootProvider({
   children,
@@ -10,7 +11,9 @@ export default function RootProvider({
   return (
     <ThemeProvider>
       <QueryProvider>
-        <KonstaProvider>{children}</KonstaProvider>
+        <NuqsProvider>
+          <KonstaProvider>{children}</KonstaProvider>
+        </NuqsProvider>
       </QueryProvider>
     </ThemeProvider>
   );

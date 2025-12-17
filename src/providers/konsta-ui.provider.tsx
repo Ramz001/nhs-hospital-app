@@ -7,5 +7,5 @@ export default function KonstaProvider({
 }: {
   children: React.ReactNode;
 }) {
-  return <App theme="material">{children}</App>;
+  return <App theme="ios">{children}</App>;
 }
