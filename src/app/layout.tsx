@@ -23,7 +23,7 @@ export default function RootLayout({
         <main className="safe-areas mx-auto w-full max-w-lg items-center justify-center">
           <Suspense
             fallback={
-              <div className="flex h-screen items-center justify-center">
+              <div className="bg-background flex h-screen items-center justify-center">
                 <Loader className="text-primary animate-spin" />
               </div>
             }
