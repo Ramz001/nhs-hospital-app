@@ -65,6 +65,8 @@ export default [
       "**/public/firebase-messaging-sw.js",
       "**/public/sw-*.js",
       "**/components/ui/**",
+      "**/android/**",
+      "**/ios/**",
     ],
   },
 ];

@@ -1,5 +1,5 @@
 {
-  "name": "hostpital-app",
+  "name": "nhs-hospital-app",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -32,6 +32,7 @@
     "drizzle-zod": "^0.8.3",
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^7.0.1",
+    "globals": "^16.5.0",
     "konsta": "^5.0.6",
     "lucide-react": "^0.561.0",
     "next": "16.0.10",

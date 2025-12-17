@@ -1,6 +1,5 @@
 'use client'
 
-import { useState } from 'react'
 import { Button, Page, Navbar, Link, Block } from 'konsta/react'
 import { parseAsArrayOf, useQueryState, parseAsString } from 'nuqs'
 import { ArrowLeft } from 'lucide-react'
@@ -8,7 +7,7 @@ import ServiceCategories from '@/components/service-categories'
 
 export default function ServicesPage() {
   const [postcode] = useQueryState('postcode')
-  const [servicesQuery, setServicesQuery] = useQueryState<string[]>(
+  const [servicesQuery, setServicesQuery] = useQueryState(
     'services',
     parseAsArrayOf(parseAsString)
   )
