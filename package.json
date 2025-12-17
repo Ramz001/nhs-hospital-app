@@ -7,7 +7,10 @@
     "build": "next build --webpack",
     "start": "next start",
     "lint": "biome check",
-    "format": "biome format --write"
+    "format": "biome format --write",
+    "android": "cap open android",
+    "sync": "cap sync",
+    "copy": "cap copy"
   },
   "dependencies": {
     "@capacitor/android": "^8.0.0",
