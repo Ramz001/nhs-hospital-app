@@ -3,8 +3,9 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { Block, Button, List, ListInput } from 'konsta/react'
-import { useQueryState } from 'nuqs'
 import z from 'zod'
+import { useAppDispatch, useAppSelector } from '@/lib/hooks'
+import { setPostcode } from '@/app/features/app.slice'
 
 const PostcodeSchema = z
   .number()
@@ -12,8 +13,9 @@ const PostcodeSchema = z
   .max(999999, 'Postcode must be 6 digits')
 
 export default function HomeSearchForm() {
+  const dispatch = useAppDispatch()
   const router = useRouter()
-  const [postcode, setPostcode] = useQueryState('postcode') // Nuqs query state
+  const { postcode } = useAppSelector((state) => state.app)
   const [error, setError] = useState('')
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -38,9 +40,11 @@ export default function HomeSearchForm() {
           type="number"
           placeholder="6-digit postcode"
           value={postcode || ''}
-          onInput={(e) => setPostcode((e.target as HTMLInputElement).value)}
+          onInput={(e) =>
+            dispatch(setPostcode((e.target as HTMLInputElement).value))
+          }
           clearButton
-          onClear={() => setPostcode(null)}
+          onClear={() => dispatch(setPostcode(null))}
           error={error}
         />
       </List>

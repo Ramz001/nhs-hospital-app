@@ -11,6 +11,7 @@ import {
 import { sql } from 'drizzle-orm'
 import { relations } from 'drizzle-orm/relations'
 import { patientServices } from './patient_services.schema'
+import { createSelectSchema } from 'drizzle-zod'
 
 export const serviceTypeEnum = pgEnum('service_type', [
   'gp',
@@ -52,3 +53,5 @@ export const services = pgTable(
 export const servicesRelations = relations(services, ({ many }) => ({
   patientServices: many(patientServices),
 }))
+
+export const ServiceTypeEnum = createSelectSchema(serviceTypeEnum)

@@ -1,16 +1,12 @@
 'use client'
 
 import { Button, Page, Navbar, Link, Block } from 'konsta/react'
-import { parseAsArrayOf, useQueryState, parseAsString } from 'nuqs'
 import { ArrowLeft } from 'lucide-react'
 import ServiceCategories from '@/components/service-categories'
+import { useAppSelector } from '@/lib/hooks'
 
 export default function ServicesPage() {
-  const [postcode] = useQueryState('postcode')
-  const [servicesQuery, setServicesQuery] = useQueryState(
-    'services',
-    parseAsArrayOf(parseAsString)
-  )
+  const { postcode, services } = useAppSelector((state) => state.app)
 
   return (
     <Page>
@@ -27,14 +23,14 @@ export default function ServicesPage() {
         <h2 className="text-primary text-2xl font-bold">
           Select Service Categories
         </h2>
-      </Block>
 
-      <ServiceCategories />
+        <ServiceCategories />
 
-      <Block>
-        <Button large className="bg-primary text-foreground w-full">
-          Continue with {servicesQuery} service
-        </Button>
+        {services && services.length > 0 && (
+          <Button large className="bg-primary text-foreground w-full">
+            Continue with services
+          </Button>
+        )}
       </Block>
     </Page>
   )
