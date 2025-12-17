@@ -1,3 +1,4 @@
+import { cn } from "@/lib/utils";
 import { List, ListItem, Badge } from "konsta/react";
 import { Stethoscope, School, Smile, Eye } from "lucide-react";
 
@@ -32,50 +33,23 @@ const serviceCategories = [
   },
 ];
 
-interface ServiceCategoriesProps {
-  onClick: (type: string) => void;
-  selectedServices: string[];
-}
-
-const ServiceCategories = ({
-  onClick,
-  selectedServices,
-}: ServiceCategoriesProps) => {
+const ServiceCategories = () => {
   return (
     <List strongIos outlineIos>
       {serviceCategories.map((service) => {
         const Icon = service.icon;
-        const isSelected = selectedServices.includes(service.type);
 
         return (
           <ListItem
             key={service.type}
             link
-            chevronMaterial={false}
-            onClick={() => onClick(service.type)}
             media={
-              <div
-                className={`w-10 h-10 rounded-full flex items-center justify-center ${
-                  isSelected ? "bg-primary/10" : "bg-muted/50"
-                }`}
-              >
-                <Icon
-                  className={`w-5 h-5 ${
-                    isSelected ? "text-primary" : service.color
-                  }`}
-                />
+              <div className="w-10 h-10 rounded-full flex items-center justify-center">
+                <Icon className={cn("w-5 h-5", service.color)} />
               </div>
             }
             title={service.label}
             subtitle={service.description}
-            after={
-              isSelected && (
-                <Badge colors={{ bg: "bg-primary", text: "text-white" }}>
-                  ✓
-                </Badge>
-              )
-            }
-            className={isSelected ? "bg-primary/5 dark:bg-primary/10" : ""}
           />
         );
       })}
