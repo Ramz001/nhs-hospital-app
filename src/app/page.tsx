@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import {
   Page,
@@ -8,12 +8,12 @@ import {
   List,
   ListItem,
   BlockTitle,
-} from 'konsta/react';
+} from "konsta/react";
 
 export default function Home() {
   return (
     <Page>
-      <Navbar title="My App" />
+      <Navbar title="NHS Hospital App" />
 
       <Block strong>
         <p>
