@@ -1,7 +1,7 @@
-"use client";
+'use client'
 
-import { ThemeProvider } from "next-themes";
-import { memo } from "react";
+import { ThemeProvider } from 'next-themes'
+import { memo } from 'react'
 
 const ThemesProviders = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -14,7 +14,7 @@ const ThemesProviders = ({ children }: { children: React.ReactNode }) => {
     >
       {children}
     </ThemeProvider>
-  );
-};
+  )
+}
 
-export default memo(ThemesProviders);
+export default memo(ThemesProviders)

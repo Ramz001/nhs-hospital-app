@@ -7,21 +7,20 @@ import {
   numeric,
   timestamp,
   check,
-} from "drizzle-orm/pg-core";
-import { sql } from "drizzle-orm";
-import { relations } from "drizzle-orm/relations";
-import { patientServices } from "./patient_services.schema";
-import { createSelectSchema } from 'drizzle-zod';
+} from 'drizzle-orm/pg-core'
+import { sql } from 'drizzle-orm'
+import { relations } from 'drizzle-orm/relations'
+import { patientServices } from './patient_services.schema'
 
-export const serviceTypeEnum = pgEnum("service_type", [
-  "gp",
-  "school",
-  "dentist",
-  "optician",
-]);
+export const serviceTypeEnum = pgEnum('service_type', [
+  'gp',
+  'school',
+  'dentist',
+  'optician',
+])
 
 export const services = pgTable(
-  "services",
+  'services',
   {
     id: uuid().defaultRandom().primaryKey().notNull(),
     type: serviceTypeEnum().notNull(),
@@ -31,25 +30,25 @@ export const services = pgTable(
     telephone: text().notNull(),
     latitude: numeric().notNull(),
     longitude: numeric().notNull(),
-    createdAt: timestamp("created_at", {
+    createdAt: timestamp('created_at', {
       withTimezone: true,
-      mode: "string",
+      mode: 'string',
     }).defaultNow(),
   },
   (table) => [
-    index("idx_services_type_postcode").using(
-      "btree",
+    index('idx_services_type_postcode').using(
+      'btree',
       table.type,
       table.postcode.asc().nullsLast()
     ),
 
     check(
-      "services_postcode_6_digits",
+      'services_postcode_6_digits',
       sql`${table.postcode} BETWEEN 100000 AND 999999`
     ),
   ]
-);
+)
 
 export const servicesRelations = relations(services, ({ many }) => ({
   patientServices: many(patientServices),
-}));
+}))

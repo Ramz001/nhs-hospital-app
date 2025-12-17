@@ -1,11 +1,11 @@
-"use client";
+'use client'
 
-import { App } from "konsta/react";
+import { App } from 'konsta/react'
 
 export default function KonstaProvider({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
-  return <App theme="ios">{children}</App>;
+  return <App theme="ios">{children}</App>
 }

@@ -1,6 +1,6 @@
-@import "tailwindcss";
-@import "konsta/react/theme.css";
-@import "tw-animate-css";
+@import 'tailwindcss';
+@import 'konsta/react/theme.css';
+@import 'tw-animate-css';
 
 @custom-variant dark (&:is(.dark *));
 
@@ -48,14 +48,14 @@
 }
 
 /* Remove arrows in Chrome, Safari, Edge, Opera */
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
 
 /* Remove arrows in Firefox */
-input[type="number"] {
+input[type='number'] {
   -moz-appearance: textfield;
   appearance: textfield;
 }

@@ -1,17 +1,17 @@
-"use client";
+'use client'
 
-import HomeSearchForm from "@/components/home-search-form";
-import { Page, Block } from "konsta/react";
+import HomeSearchForm from '@/components/home-search-form'
+import { Page, Block } from 'konsta/react'
 
 export default function Home() {
   return (
-    <Page className="h-full flex items-center justify-center flex-col px-4">
+    <Page className="flex h-full flex-col items-center justify-center px-4">
       {/* Header */}
-      <div className="text-center mb-8 w-full">
-        <h2 className="text-3xl font-bold text-foreground mb-3">
+      <div className="mb-8 w-full text-center">
+        <h2 className="text-foreground mb-3 text-3xl font-bold">
           Find Healthcare Services
         </h2>
-        <p className="text-base text-secondary-foreground">
+        <p className="text-secondary-foreground text-base">
           Enter the patient’s postcode to find nearby GPs, schools, dentists,
           and opticians.
         </p>
@@ -21,12 +21,12 @@ export default function Home() {
       <HomeSearchForm />
 
       {/* Tip */}
-      <Block strong inset className="mt-6 bg-background ">
-        <p className="text-sm text-muted-foreground">
+      <Block strong inset className="bg-background mt-6">
+        <p className="text-muted-foreground text-sm">
           <strong>Tip:</strong> We’ll automatically show the nearest services
           for each category based on this postcode.
         </p>
       </Block>
     </Page>
-  );
+  )
 }

@@ -1,12 +1,12 @@
-import KonstaProvider from "./konsta-ui.provider";
-import QueryProvider from "./query.provider";
-import ThemeProvider from "./theme.provider";
-import NuqsProvider from "./nuqs.provider";
+import KonstaProvider from './konsta-ui.provider'
+import QueryProvider from './query.provider'
+import ThemeProvider from './theme.provider'
+import NuqsProvider from './nuqs.provider'
 
 export default function RootProvider({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
   return (
     <ThemeProvider>
@@ -16,5 +16,5 @@ export default function RootProvider({
         </NuqsProvider>
       </QueryProvider>
     </ThemeProvider>
-  );
+  )
 }

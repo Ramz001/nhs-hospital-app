@@ -4,25 +4,25 @@ import {
   uuid,
   timestamp,
   primaryKey,
-} from "drizzle-orm/pg-core";
-import { relations } from "drizzle-orm/relations";
-import { services } from "./service.schema";
-import { patientRecords } from "./patient_records.schema";
+} from 'drizzle-orm/pg-core'
+import { relations } from 'drizzle-orm/relations'
+import { services } from './service.schema'
+import { patientRecords } from './patient_records.schema'
 
 export const patientServices = pgTable(
-  "patient_services",
+  'patient_services',
   {
-    patientRecordId: uuid("patient_record_id")
+    patientRecordId: uuid('patient_record_id')
       .notNull()
-      .references(() => patientRecords.id, { onDelete: "cascade" }),
+      .references(() => patientRecords.id, { onDelete: 'cascade' }),
 
-    serviceId: uuid("service_id")
+    serviceId: uuid('service_id')
       .notNull()
-      .references(() => services.id, { onDelete: "restrict" }),
+      .references(() => services.id, { onDelete: 'restrict' }),
 
-    createdAt: timestamp("created_at", {
+    createdAt: timestamp('created_at', {
       withTimezone: true,
-      mode: "string",
+      mode: 'string',
     }).defaultNow(),
   },
   (table) => [
@@ -30,11 +30,11 @@ export const patientServices = pgTable(
       columns: [table.patientRecordId, table.serviceId],
     }),
 
-    index("idx_patient_services_record").using("btree", table.patientRecordId),
+    index('idx_patient_services_record').using('btree', table.patientRecordId),
 
-    index("idx_patient_services_service").using("btree", table.serviceId),
+    index('idx_patient_services_service').using('btree', table.serviceId),
   ]
-);
+)
 
 export const patientServicesRelations = relations(
   patientServices,
@@ -48,4 +48,4 @@ export const patientServicesRelations = relations(
       references: [services.id],
     }),
   })
-);
+)
