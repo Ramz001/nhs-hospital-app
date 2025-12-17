@@ -29,7 +29,7 @@ export default function HomeSearchForm() {
 
     setError('')
 
-    router.push(`/services?postcode=${postcode}`)
+    router.push(`/services`)
   }
 
   return (
