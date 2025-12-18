@@ -1,19 +1,25 @@
 import {
   pgTable,
-  index,
   uuid,
   numeric,
   timestamp,
+  index,
   check,
 } from 'drizzle-orm/pg-core'
-import { sql } from 'drizzle-orm'
 import { relations } from 'drizzle-orm/relations'
-import { patientServices } from './patient_services.schema'
+import { services } from './service.schema'
+import { sql } from 'drizzle-orm'
+import { createSelectSchema } from 'drizzle-zod'
 
+/** Patient records simplified: each record links to a single service */
 export const patientRecords = pgTable(
   'patient_records',
   {
     id: uuid().defaultRandom().primaryKey().notNull(),
+
+    serviceId: uuid()
+      .notNull()
+      .references(() => services.id, { onDelete: 'restrict' }),
 
     postcode: numeric('postcode', {
       precision: 6,
@@ -35,7 +41,7 @@ export const patientRecords = pgTable(
       'btree',
       table.postcode.asc().nullsLast()
     ),
-
+    index('idx_patient_records_service').using('btree', table.serviceId),
     check(
       'patient_postcode_6_digits',
       sql`${table.postcode} BETWEEN 100000 AND 999999`
@@ -43,9 +49,13 @@ export const patientRecords = pgTable(
   ]
 )
 
-export const patientRecordsRelations = relations(
-  patientRecords,
-  ({ many }) => ({
-    services: many(patientServices),
-  })
-)
+/** Relations */
+export const patientRecordsRelations = relations(patientRecords, ({ one }) => ({
+  service: one(services, {
+    fields: [patientRecords.serviceId],
+    references: [services.id],
+  }),
+}))
+
+/** Optional Zod schema */
+export const PatientRecordSchema = createSelectSchema(patientRecords)
